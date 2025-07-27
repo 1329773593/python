@@ -1,165 +1,299 @@
-在进行 Python 开发时，通常会涉及以下三种工具：
-
-1. **Python**：作为编程语言，提供了基础的语法和标准库。
-2. **VSCode**：作为集成开发环境（IDE），提供代码编辑、调试和插件支持。
-3. **Git**：作为版本控制工具，用于管理代码的历史和协作。
-
-这些工具相互配合，共同构建高效的开发环境。以下是对这三者的详细介绍：
+为了帮助大家顺利搭建 Python 开发环境，以下是详细的开发环境搭建指南，涵盖 Python、VSCode 和 Git 的安装与配置。该指南适用于初学者，旨在提供清晰、实用的步骤，帮助大家快速上手开发。([apifox][1])
 
 ---
 
-## 1. Python：语言与包管理
+# 🛠️ Python 开发环境搭建指南
 
-### 安装 Python
+## 🐍 第一部分：安装 Python
 
-* **官网下载**：访问 [python.org](https://www.python.org/downloads/) 下载适合操作系统的安装包。
-* **安装建议**：
+### 1. 下载 Python 安装包
 
-  * 勾选 **Add Python to PATH**，以便在命令行中直接使用 `python` 和 `pip`。
-  * 推荐安装 **Python 3.9** 或 **3.10** 版本，兼容性好，支持大部分库。
+* **官方网站**：访问 [Python 官网](https://www.python.org/downloads/) 下载适用于你操作系统的最新版本。
 
-### 安装与更新 `pip`
+### 2. 安装 Python
 
-`pip` 是 Python 的包管理工具，通常随 Python 一起安装。
+* **安装步骤**：
 
-* **更新 `pip`**：
+  1. 双击下载的安装包，启动安装程序。
+  2. **勾选**“Add Python to PATH”选项。
+  3. 点击“Customize installation”进行自定义安装。
+  4. 在“Advanced Options”中，**勾选**“Install for all users”并选择安装路径。
+  5. 点击“Install”开始安装。([cnblogs.com][2], [CSDN 博客][3])
+
+* **注意事项**：
+
+  * 确保选择正确的操作系统版本（32 位或 64 位）。
+  * 安装过程中，**勾选**“Install launcher for all users”和“Add Python to PATH”选项。
+  * 建议使用 Python 3.x 版本，Python 2.x 已停止支持。([cnblogs.com][4], [cnblogs.com][2])
+
+### 3. 切换镜像源（可选）
+
+由于国内访问 Python 官方源可能较慢，建议切换至国内镜像源。
+
+* **阿里云镜像**：
 
 ```bash
-  python -m pip install --upgrade pip
+  pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/
 ```
 
 
 
-### 切换 `pip` 镜像源
-
-在国内使用默认的 PyPI 镜像可能速度较慢，可以切换到国内镜像源：
-
-* **临时使用镜像源**：
+* **清华大学镜像**：
 
 ```bash
-  pip install -i https://pypi.tuna.tsinghua.edu.cn/simple package_name
+  pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple/
 ```
 
 
 
-* **永久修改镜像源**：
+### 4. 安装常用 Python 包
 
-  * **Windows**：编辑 `C:\Users\<YourUsername>\AppData\Roaming\pip\pip.ini`，添加：
+常用的 Python 包包括：
 
-    ```ini
-    [global]
-    index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+* `numpy`：用于科学计算。
+* `pandas`：用于数据处理和分析。
+* `matplotlib`：用于绘图。
+* `scikit-learn`：用于机器学习。
+* `tensorflow` 或 `torch`：用于深度学习。
+
+安装命令示例：
+
+```bash
+pip install numpy pandas matplotlib scikit-learn
+```
+
+
+
+### 5. 创建虚拟环境
+
+为了避免包版本冲突，建议为每个项目创建独立的虚拟环境。
+
+* **创建虚拟环境**：
+
+```bash
+  python -m venv venv
+```
+
+
+
+* **激活虚拟环境**：
+
+  * Windows：
+
+    ```bash
+    .\venv\Scripts\activate
+    ```
+  * macOS/Linux：([cnblogs.com][4])
+
+    ```bash
+    source venv/bin/activate
     ```
 
-  * **Linux/macOS**：编辑 `~/.config/pip/pip.conf`，添加：
+* **退出虚拟环境**：
 
-    ```ini
-    [global]
-    index-url = https://pypi.tuna.tsinghua.edu.cn/simple
-    ```
+```bash
+  deactivate
+```
+
+
 
 ---
 
-## 2. VSCode：开发环境与插件支持
+## 💻 第二部分：安装 VSCode
 
-### 安装 VSCode
+### 1. 下载 VSCode
 
-* **官网下载**：访问 [code.visualstudio.com](https://code.visualstudio.com/) 下载适合操作系统的安装包。
+* **官方网站**：访问 [VSCode 官网](https://code.visualstudio.com/) 下载适用于你操作系统的最新版本。([apifox][1])
 
-### 安装 Python 插件
+### 2. 安装 VSCode
 
-* **Python 插件**：在 VSCode 的扩展市场中搜索并安装 `Python` 插件（由 Microsoft 提供），该插件提供语法高亮、代码补全、调试等功能。
-* **Pylance 插件**：安装 `Pylance` 插件，提供更快的类型检查和智能提示。
+* **安装步骤**：
 
-### 配置 Python 解释器
+  1. 双击下载的安装包，启动安装程序。
+  2. 按照提示完成安装。([cnblogs.com][2])
 
-* **选择解释器**：按 `Ctrl+Shift+P` 打开命令面板，输入 `Python: Select Interpreter`，选择对应的 Python 解释器。
+### 3. 安装插件
 
-### 常用 VSCode 插件
+在 VSCode 中，插件可以增强编辑器的功能。
 
-* **autoDocstring**：自动生成函数的 docstring，支持多种格式。
-* **Black Formatter**：自动格式化代码，遵循 PEP 8 风格。
-* **GitLens**：增强 Git 功能，查看代码历史和作者信息。
-* **Jupyter**：支持 Jupyter Notebook 的编辑和运行。([Towards The Cloud][1])
+* **常用插件**：
+
+  * **Python**：提供 Python 语法高亮、自动补全、调试等功能。
+  * **Pylance**：提供更快的 IntelliSense 和类型检查。
+  * **Jupyter**：支持 Jupyter Notebook 的编辑和运行。
+  * **Markdown All in One**：增强 Markdown 编辑体验。
+  * **GitLens**：增强 Git 功能。([apifox][1])
+
+安装方法：
+
+1. 打开 VSCode。
+2. 点击左侧活动栏的扩展图标（或按 `Ctrl+Shift+X`）。
+3. 在搜索框中输入插件名称，点击“安装”按钮。([apifox][1])
 
 ---
 
-## 3. Git：版本控制与项目管理
+## 🧾 第三部分：安装 Git
 
-### 安装 Git
+### 1. 下载 Git
 
-* **官网下载**：访问 [git-scm.com](https://git-scm.com/) 下载适合操作系统的安装包。
+* **官方网站**：访问 [Git 官网](https://git-scm.com/) 下载适用于你操作系统的最新版本。
 
-### 配置 Git
+### 2. 安装 Git
+
+* **安装步骤**：
+
+  1. 双击下载的安装包，启动安装程序。
+  2. 按照提示完成安装。
+
+### 3. 配置 Git
 
 * **设置用户名和邮箱**：
 
 ```bash
   git config --global user.name "Your Name"
-  git config --global user.email "you@example.com"
+  git config --global user.email "youremail@example.com"
 ```
 
 
 
-### 克隆 GitHub 项目
-
-* **克隆项目**：
+* **查看配置**：
 
 ```bash
-  git clone https://github.com/username/repo.git
+  git config --list
 ```
 
 
 
-* **进入项目目录**：
+### 4. 克隆仓库
+
+使用 `git clone` 命令将远程仓库复制到本地：
 
 ```bash
-  cd repo
+git clone https://gitee.com/Python_Ai_Road/eat_pytorch_in_20_days
 ```
 
 
 
-* **安装依赖**：
+### 5. 常用 Git 命令
+
+* **查看当前状态**：
 
 ```bash
-  pip install -r requirements.txt
+  git status
+```
+
+
+
+* **查看当前分支**：
+
+```bash
+  git branch
+```
+
+
+
+* **切换分支**：
+
+```bash
+  git checkout <branch_name>
+```
+
+
+
+* **添加文件到暂存区**：
+
+```bash
+  git add <file_name>
+```
+
+
+
+* **提交更改**：
+
+```bash
+  git commit -m "Commit message"
+```
+
+
+
+* **推送更改到远程仓库**：
+
+```bash
+  git push origin <branch_name>
+```
+
+
+
+* **拉取远程仓库的更改**：
+
+```bash
+  git pull origin <branch_name>
 ```
 
 
 
 ---
 
-## 常用 Python 库（根据开发需求选择）
+## 📦 常用 Python 库
 
-### 数据科学与机器学习
+以下是一些常用的 Python 库，适用于数据分析、机器学习、深度学习等领域：
 
-* **NumPy**：提供高效的数值计算功能。
-* **pandas**：数据处理和分析工具。
-* **Matplotlib**：绘制静态、动态和交互式图表。
-* **scikit-learn**：机器学习库，提供分类、回归、聚类等算法。
-* **TensorFlow** / **PyTorch**：深度学习框架。([My Great Learning][2])
+* **数据处理**：
 
-### Web 开发
+  * `numpy`：用于科学计算。
+  * `pandas`：用于数据处理和分析。
 
-* **Flask**：轻量级 Web 框架。
-* **Django**：全功能 Web 框架。([en.wikipedia.org][3])
+* **数据可视化**：
 
-### 网络请求与数据处理
+  * `matplotlib`：用于绘图。
+  * `seaborn`：基于 `matplotlib` 的统计数据可视化库。
 
-* **Requests**：简化 HTTP 请求的库。
-* **BeautifulSoup**：网页解析库。
-* **lxml**：高性能的 XML 和 HTML 解析库。
+* **机器学习**：
 
-### 测试与调试
+  * `scikit-learn`：用于机器学习。
+  * `xgboost`：用于梯度提升树模型。
 
-* **pytest**：功能强大的测试框架。
-* **unittest**：Python 内置的测试框架。
-* **pdb**：Python 内置的调试器。
+* **深度学习**：
+
+  * `tensorflow`：用于深度学习。
+  * `torch`：PyTorch，深度学习框架。
+
+* **Web 开发**：
+
+  * `flask`：轻量级 Web 框架。
+  * `django`：全功能 Web 框架。
+
+安装方法：
+
+```bash
+pip install numpy pandas matplotlib scikit-learn
+```
+
+
 
 ---
 
-通过上述工具和配置，你可以搭建一个高效的 Python 开发环境，适用于数据科学、机器学习、Web 开发等多种场景。
+## 📄 常用 VSCode 插件
 
-[1]: https://towardsthecloud.com/blog/best-vscode-extensions-python?utm_source=chatgpt.com "10 Must-Have VS Code extensions for Python developers"
-[2]: https://www.mygreatlearning.com/blog/open-source-python-libraries/?utm_source=chatgpt.com "Top 30 Python Libraries To Know"
-[3]: https://en.wikipedia.org/wiki/Matplotlib?utm_source=chatgpt.com "Matplotlib"
+以下是一些常用的 VSCode 插件，适用于 Python 开发、Markdown 编辑等：
+
+* **Python**：提供 Python 语法高亮、自动补全、调试等功能。
+* **Pylance**：提供更快的 IntelliSense 和类型检查。
+* **Jupyter**：支持 Jupyter Notebook 的编辑和运行。
+* **Markdown All in One**：增强 Markdown 编辑体验。
+* **GitLens**：增强 Git 功能。([apifox][1])
+
+安装方法：
+
+1. 打开 VSCode。
+2. 点击左侧活动栏的扩展图标（或按 `Ctrl+Shift+X`）。
+3. 在搜索框中输入插件名称，点击“安装”按钮。([apifox][1])
+
+---
+
+你
+
+[1]: https://apifox.com/apiskills/install-vscode/?utm_source=chatgpt.com "2025年VSCode 安装下载教程（Mac & Windows & Linux）"
+[2]: https://www.cnblogs.com/kyle-7Qc/p/18537085?utm_source=chatgpt.com "Python 基础知识之安装.基本使用"
+[3]: https://blog.csdn.net/weixin_46904245/article/details/139407758?utm_source=chatgpt.com "Python安装步骤原创"
+[4]: https://www.cnblogs.com/jzcn/p/16733969.html?utm_source=chatgpt.com "Python 安装- 浇筑菜鸟"
