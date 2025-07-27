@@ -291,7 +291,6 @@ pip install numpy pandas matplotlib scikit-learn
 
 ---
 
-你
 
 [1]: https://apifox.com/apiskills/install-vscode/?utm_source=chatgpt.com "2025年VSCode 安装下载教程（Mac & Windows & Linux）"
 [2]: https://www.cnblogs.com/kyle-7Qc/p/18537085?utm_source=chatgpt.com "Python 基础知识之安装.基本使用"
