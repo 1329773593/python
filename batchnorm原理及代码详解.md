@@ -1,4 +1,11 @@
-# batchnorm原理及代码详解
+#### 目录  
+- [Batchnorm引入背景](#markdown-Batchnorm引入背景)  
+- [Batchnorm原理解读](#markdown-Batchnorm原理解读)  
+- [Batchnorm源码解读](#markdown-Batchnorm源码解读)  
+- [Batchnorm缺点](#markdown-Batchnorm缺点)
+
+  
+
 参考链接：https://blog.csdn.net/qq_25737169/article/details/79048516
 
 ## Batchnorm引入背景
